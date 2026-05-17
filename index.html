@@ -35,7 +35,7 @@ body{
 
     background-size:cover;
 }
-    
+
 /* OVERLAY */
 body::before{
 
@@ -1547,6 +1547,7 @@ function autoFillObat(){
     let dosisPerMlInput =
     document.getElementById('dosisPerMl');
 
+    /* DILTIAZEM */
     if(obat === "DILTIAZEM"){
 
         konsentrasi.value =
@@ -1556,6 +1557,7 @@ function autoFillObat(){
         "2 mg/ml";
     }
 
+    /* NICARDIPINE MURNI */
     if(obat === "NICARDIPINE_MURNI"){
 
         konsentrasi.value =
@@ -1565,6 +1567,17 @@ function autoFillObat(){
         "1 mg/ml";
     }
 
+    /* NICARDIPINE OPLOS */
+    if(obat === "NICARDIPINE_OPLOS"){
+
+        konsentrasi.value =
+        "10 mg";
+
+        dosisPerMlInput.value =
+        "0.2 mg/ml";
+    }
+
+    /* DOBUTAMIN */
     if(obat === "DOBUTAMIN"){
 
         konsentrasi.value =
@@ -1574,6 +1587,37 @@ function autoFillObat(){
         "5 mg/ml";
     }
 
+    /* NTG */
+    if(obat === "NTG"){
+
+        konsentrasi.value =
+        "10 mg";
+
+        dosisPerMlInput.value =
+        "0.5 mg/ml";
+    }
+
+    /* DOPAMIN */
+    if(obat === "DOPAMIN"){
+
+        konsentrasi.value =
+        "200 mg";
+
+        dosisPerMlInput.value =
+        "5 mg/ml";
+    }
+
+    /* DEX */
+    if(obat === "DEX"){
+
+        konsentrasi.value =
+        "200 mcg";
+
+        dosisPerMlInput.value =
+        "4 mcg/ml";
+    }
+
+    /* NE */
     if(obat === "NE"){
 
         konsentrasi.value =
@@ -1581,6 +1625,26 @@ function autoFillObat(){
 
         dosisPerMlInput.value =
         "0.2 mg/ml";
+    }
+
+    /* EPI */
+    if(obat === "EPI"){
+
+        konsentrasi.value =
+        "8 mg";
+
+        dosisPerMlInput.value =
+        "0.2 mg/ml";
+    }
+
+    /* VASO */
+    if(obat === "VASO"){
+
+        konsentrasi.value =
+        "20 iu";
+
+        dosisPerMlInput.value =
+        "1 iu/ml";
     }
 }
 function tambahLabel(){
@@ -2262,6 +2326,7 @@ if(obat === "DEX"){
 </div>
 
 `;
+
 
     document.getElementById(
         'spuitSheet'
