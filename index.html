@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AIRA by Limbat</title>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+
+    margin:0;
+    padding:20px;
+
+    font-family:Arial, sans-serif;
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(15,23,42,0.95),
+        rgba(15,118,110,0.90)
+    ),
+
+    url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3')
+    no-repeat center center fixed;
+
+    background-size:cover;
+}
+
+/* OVERLAY */
+body::before{
+
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at top right,
+        rgba(255,255,255,0.08),
+        transparent 40%
+    );
+
+    pointer-events:none;
+}
+
+/* =========================
+   HEADER ICU STYLE
+========================= */
+
+.header-app{
+
+    margin-bottom:20px;
+}
+
+.header-top{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr 1fr;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+/* BOX LOGO */
+
+.header-logo-box{
+
+    background:transparent;
+
+    border-radius:0;
+
+    padding:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:none;
+}
+
+.header-logo{
+
+    width:100%;
+
+    max-height:120px;
+
+    object-fit:contain;
+
+    display:block;
+}
+
+/* TENGAH */
+
+.header-center{
+
+    text-align:center;
+
+    color:white;
+}
+
+.aira-title{
+
+    margin:0;
+
+    font-size:72px;
+
+    line-height:0.9;
+
+    letter-spacing:4px;
+
+    font-weight:900;
+
+    text-shadow:
+    0 5px 15px rgba(0,0,0,0.3);
+}
+
+.aira-sub{
+
+    font-size:20px;
+
+    letter-spacing:8px;
+
+    margin-top:5px;
+
+    color:#d1fae5;
+
+    font-weight:600;
+}
+
+.aira-desc{
+
+    margin-top:10px;
+
+    font-size:20px;
+
+    font-weight:600;
+}
+
+.aira-desc-small{
+
+    font-size:15px;
+
+    margin-top:5px;
+
+    color:#f8fafc;
+}
+
+/* LOGO */
+/* BANNER RS */
+.logo-banner{
+
+    width:min(95%,1200px);
+
+    max-height:170px;
+
+    object-fit:contain;
+
+    display:block;
+
+    margin:0 auto 15px auto;
+
+    border-radius:40px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,0.25);
+}
+
+.header-app h1{
+
+    margin:0;
+
+    font-size:36px;
+
+    letter-spacing:2px;
+
+    animation:pulse 1.5s infinite;
+}
+
+.header-app p{
+
+    margin-top:8px;
+
+    opacity:0.9;
+}
+.title-aira{
+
+    margin:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    line-height:1;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    animation:pulse 1.5s infinite;
+}
+
+.title-aira{
+
+    font-size:48px;
+
+    color:white;
+}
+
+.title-aira span{
+
+    margin-top:6px;
+
+    font-size:16px;
+
+    font-weight:500;
+
+    letter-spacing:4px;
+
+    color:#d1fae5;
+
+    text-transform:uppercase;
+}
+/* ANIMASI */
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.03);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* FORM */
+.form-box{
+
+    background:rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    box-shadow:
+    0 8px 30px rgba(0,0,0,0.25);
+
+    margin-bottom:30px;
+}
+.main-stack{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+}
+/* =========================
+   ICU PANEL LAYOUT
+========================= */
+
+.top-panel{
+
+    display:grid;
+
+    grid-template-columns:1.4fr 1fr;
+
+    gap:18px;
+
+    margin-bottom:20px;
+}
+
+/* =========================
+   NEW ICU LAYOUT
+========================= */
+
+.top-layout{
+
+    display:grid;
+
+    grid-template-columns:
+    1.2fr 1fr;
+
+    gap:16px;
+
+    align-items:start;
+}
+
+.left-panel,
+.right-panel{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+}
+
+/* GRID */
+
+.form-grid-3{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:12px;
+}
+
+.form-grid-2{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:12px;
+}
+
+.panel-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:16px;
+
+    box-shadow:
+    0 4px 12px rgba(0,0,0,0.08);
+
+    border:1px solid #dbeafe;
+}
+
+.panel-title{
+
+    margin-top:0;
+
+    margin-bottom:14px;
+
+    font-size:20px;
+
+    color:#0f766e;
+
+    font-weight:900;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    letter-spacing:0.5px;
+}
+/* =========================
+   ICU SECTION
+========================= */
+
+.section-box{
+
+    background:#f8fafc;
+
+    border-radius:16px;
+
+    padding:14px;
+
+    margin-bottom:15px;
+
+    border:1px solid #dbeafe;
+}
+
+.section-mini-title{
+
+    font-size:14px;
+
+    font-weight:800;
+
+    color:#0f766e;
+
+    margin-bottom:12px;
+
+    letter-spacing:0.5px;
+
+    text-transform:uppercase;
+}
+/* BUTTON AREA */
+.full-button-bar{
+
+    width:100%;
+
+    display:block;
+
+    margin-top:18px;
+
+    margin-bottom:20px;
+}
+
+.button-group{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+    gap:14px;
+
+    align-items:stretch;
+}
+
+.button-group button{
+
+    width:100%;
+}
+
+/* LABEL CONTAINER */
+
+.output-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:2mm;
+
+    padding-top:6px;
+
+    background:transparent !important;
+}
+
+/* BOX SECTION */
+
+.output-box{
+
+    background:transparent !important;
+
+    border:none !important;
+
+    border-radius:0 !important;
+
+    padding:0 !important;
+
+    margin:0 !important;
+
+    box-shadow:none !important;
+}
+
+.output-title{
+    display:none !important;
+}
+
+/* LABEL SPUIT */
+
+.spuit-sheet{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit, 58mm);
+
+    gap:8px;
+}
+
+.spuit-label{
+
+    width:58mm;
+
+    height:30mm;
+
+    background:white;
+
+    border:2px solid #111827;
+
+    border-radius:10px;
+
+    padding:2mm;
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    page-break-inside:avoid;
+}
+
+.spuit-title{
+
+    font-size:12px;
+
+    font-weight:900;
+
+    text-align:center;
+
+    margin-bottom:2px;
+
+    color:#111827;
+
+    letter-spacing:1px;
+}
+/* =========================
+   SPUIT INFO GRID
+========================= */
+
+.spuit-info-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:2px;
+
+    flex:1;
+
+    align-content:start;
+}
+
+.spuit-info-item{
+
+    border-radius:6px;
+
+    padding:2px 4px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:3px;
+
+    font-size:6.8px;
+
+    font-weight:700;
+
+    min-height:18px;
+
+    overflow:hidden;
+}
+
+.spuit-info-icon{
+
+    flex-shrink:0;
+
+    font-size:7px;
+}
+
+.spuit-info-text{
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+/* WARNA IDENTITAS */
+
+.info-patient{
+    background:#eff6ff;
+}
+
+.info-rm{
+    background:#eef2ff;
+}
+
+.info-bb{
+    background:#ecfccb;
+}
+
+.info-giver{
+    background:#fff7ed;
+}
+
+.info-obat{
+    background:#fee2e2;
+}
+
+.info-checker{
+    background:#dcfce7;
+}
+
+.info-pelarut{
+    background:#ecfeff;
+}
+
+.info-time{
+    background:#f3f4f6;
+}
+
+.high-alert{
+
+    position:absolute;
+
+    top:0;
+
+    right:0;
+
+    background:#dc2626;
+
+    color:white;
+
+    font-size:6px;
+
+    font-weight:900;
+
+    padding:2px 6px;
+
+    border-bottom-left-radius:8px;
+
+    letter-spacing:0.5px;
+
+    box-shadow:
+    0 2px 6px rgba(220,38,38,0.3);
+}
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:15px;
+}
+
+input,
+select{
+
+    width:100%;
+
+    height:52px;
+
+    padding:10px 14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    background:#eef2ff;
+
+    color:#111827;
+
+    box-shadow:
+    inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* INPUT AUTO FILL */
+
+input[readonly]{
+
+    background:#e8f5e9;
+
+    color:#166534;
+
+    font-weight:800;
+
+    border:2px solid #bbf7d0;
+}
+
+button{
+
+    width:100%;
+
+    height:64px;
+
+    border:3px solid rgba(255,255,255,0.9);
+
+    border-radius:16px;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:0.25s;
+
+    letter-spacing:0.3px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:
+    0 4px 10px rgba(0,0,0,0.15);
+}
+button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 8px 18px rgba(0,0,0,0.22);
+}
+.btn-add{
+
+    background:
+    linear-gradient(
+        90deg,
+        #2563eb,
+        #06b6d4
+    );
+
+    color:white;
+}
+
+.btn-print{
+
+    background:
+    linear-gradient(
+        90deg,
+        #16a34a,
+        #22c55e
+    );
+
+    color:white;
+}
+
+.btn-clear{
+
+    background:
+    linear-gradient(
+        90deg,
+        #dc2626,
+        #ef4444
+    );
+
+    color:white;
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* GRID LABEL */
+.sheet{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit, 5.5cm);
+
+    gap:8mm;
+
+    justify-content:center;
+}
+
+/* LABEL */
+.label{
+
+    width:5cm;
+    height:8.5cm;
+
+    background:white;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    border:2px solid #111827;
+
+    break-inside:avoid;
+
+    page-break-inside:avoid;
+
+    flex:0 0 5cm;
+
+    margin:0;
+}
+
+/* HEADER LABEL */
+.label-header{
+
+    padding:8px;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+    border-bottom:2px solid black;
+}
+
+/* CONTENT */
+.label-content{
+
+    padding:4px 5px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    flex:1;
+
+    gap:3px;
+}
+
+.label-content table{
+
+    width:100%;
+}
+
+.label-content td{
+
+    padding:2px;
+}
+  /* IDENTITAS PASIEN */
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:3px 5px;
+
+    font-size:7.5px;
+
+    font-weight:500;
+
+    margin-bottom:4px;
+}
+
+.info-grid div{
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+/* RATE TABLE */
+.rate-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    font-size:7px;
+
+    margin-top:2px;
+
+    flex:1;
+}
+
+.rate-table th,
+.rate-table td{
+
+    border:1px solid black;
+
+    padding:1px;
+
+    text-align:center;
+}
+
+/* KHUSUS NE & EPI */
+.double-table{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:3px;
+}
+
+/* ALERT */
+.alert{
+
+    margin-top:3px;
+
+    border:2px solid red;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    color:red;
+
+    font-weight:700;
+
+    font-size:9px;
+
+    line-height:1.2;
+
+    padding:4px;
+}
+
+/* PRINT */
+@page{
+    size:A4 portrait;
+    margin:8mm;
+}
+
+@media print{
+
+    *{
+        -webkit-print-color-adjust:exact !important;
+        print-color-adjust:exact !important;
+    }
+
+    html,
+    body{
+
+        width:100%;
+        height:auto;
+
+        background:white !important;
+
+        margin:0;
+        padding:0;
+    }
+
+    /* SEMBUNYIKAN FORM */
+
+.header-app,
+.full-button-bar,
+.panel-card,
+.copyright,
+.output-title{
+
+        display:none !important;
+    }
+
+    /* SATUKAN SEMUA LABEL */
+
+    .output-grid{
+
+        display:block !important;
+    }
+
+    .output-box{
+
+        box-shadow:none !important;
+        border:none !important;
+        padding:0 !important;
+        margin:0 !important;
+
+        background:white !important;
+    }
+
+    /* GRID LABEL TITRASI */
+
+.sheet{
+
+    width:100%;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:2mm;
+
+    align-items:flex-start;
+
+    align-content:flex-start;
+}
+
+    /* GRID LABEL SPUIT */
+
+  .spuit-sheet{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fill,58mm);
+
+    gap:2mm;
+
+    justify-content:start;
+
+    align-content:start;
+
+    margin-top:2mm;
+}
+
+    /* LABEL */
+
+.label,
+.spuit-label{
+
+    box-shadow:none !important;
+
+    border-radius:0 !important;
+
+    break-inside:avoid;
+
+    page-break-inside:avoid;
+
+    position:relative;
+}
+
+    /* GARIS POTONG */
+
+    .label::before,
+    .label::after,
+    .spuit-label::before,
+    .spuit-label::after{
+
+        content:"";
+
+        position:absolute;
+
+        border-color:#9ca3af;
+        border-style:dashed;
+
+        pointer-events:none;
+    }
+
+    /* HORIZONTAL CUT */
+
+    .label::before,
+    .spuit-label::before{
+
+        left:-3mm;
+        right:-3mm;
+        top:-3mm;
+
+        border-top-width:1px;
+    }
+
+    /* VERTICAL CUT */
+
+    .label::after,
+    .spuit-label::after{
+
+        top:-3mm;
+        bottom:-3mm;
+        left:-3mm;
+
+        border-left-width:1px;
+    }
+}
+
+/* COPYRIGHT NORMAL */
+.copyright{
+
+    width:100%;
+
+    text-align:center;
+
+    margin-top:35px;
+
+    padding-bottom:15px;
+
+    color:#f8fafc;
+
+    font-size:13px;
+
+    letter-spacing:3px;
+
+    font-weight:500;
+
+    text-transform:uppercase;
+
+    opacity:0.9;
+
+    text-shadow:
+    0 2px 10px rgba(0,0,0,0.4);
+}  
+/* HAPUS SEMUA BAYANGAN CETAK */
+
+*{
+
+    box-shadow:none !important;
+
+    filter:none !important;
+}
+
+/* HAPUS BACKGROUND PANEL */
+
+.form-box,
+.output-grid,
+.output-box,
+.main-stack{
+
+    background:transparent !important;
+
+    box-shadow:none !important;
+
+    border:none !important;
+}
+
+/* HAPUS BAYANGAN LABEL */
+
+.label,
+.spuit-label{
+
+    box-shadow:none !important;
+
+    filter:none !important;
+}
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .header-top{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .top-panel{
+
+        grid-template-columns:1fr;
+    }
+
+    .button-group{
+
+        grid-template-columns:1fr;
+    }
+
+    .aira-title{
+
+        font-size:48px;
+    }
+
+    .aira-desc{
+
+        font-size:16px;
+    }
+
+    .header-logo{
+
+        max-height:55px;
+    }
+
+    .sheet{
+
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="header-app">
+
+    <div class="header-top">
+
+        <!-- LOGO KIRI -->
+        <div class="header-logo-box">
+
+            <img
+            src="logo_1.png"
+            class="header-logo"
+            alt="Logo Kiri">
+
+        </div>
+
+        <!-- TENGAH -->
+        <div class="header-center">
+
+            <h1 class="aira-title">
+            AIRA
+            </h1>
+
+            <div class="aira-sub">
+            BY LIMBAT
+            </div>
+
+            <div class="aira-desc">
+            Airlangga Intelligent Rapid Assistant
+            </div>
+
+            <div class="aira-desc-small">
+            Precision in High Alert Medication Calculator
+            </div>
+
+        </div>
+
+        <!-- LOGO KANAN -->
+        <div class="header-logo-box">
+
+            <img
+            src="logo_2.png"
+            class="header-logo"
+            alt="Logo Kanan">
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="form-box">
+
+<div class="main-stack">
+
+<!-- PANEL ICU -->
+<div class="top-layout">
+
+    <!-- PANEL KIRI -->
+    <div class="left-panel">
+
+        <!-- DATA PASIEN -->
+        <div class="panel-card">
+
+            <h2 class="panel-title">
+            🩺 DATA PASIEN
+            </h2>
+
+            <!-- IDENTITAS -->
+            <div class="section-box">
+
+                <div class="section-mini-title">
+                IDENTITAS PASIEN
+                </div>
+
+                <div class="form-grid-3">
+
+                    <input
+                    type="text"
+                    id="nama"
+                    placeholder="Nama Pasien">
+
+                    <input
+                    type="text"
+                    id="mr"
+                    placeholder="No RM">
+
+                    <select id="gender">
+
+                        <option value="pria">
+                        Laki-laki
+                        </option>
+
+                        <option value="wanita">
+                        Perempuan
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- CHUMLEA -->
+            <div class="section-box">
+
+                <div class="section-mini-title">
+                BERAT BADAN (CHUMLEA)
+                </div>
+
+                <div class="form-grid-3">
+
+                    <input
+                    type="number"
+                    id="knee"
+                    placeholder="Panjang Lutut">
+
+                    <input
+                    type="number"
+                    id="lila"
+                    placeholder="LILA">
+
+                    <input
+                    type="number"
+                    id="bb"
+                    placeholder="Hasil BB"
+                    readonly>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PANEL KANAN -->
+    <div class="right-panel">
+
+        <!-- PARAMETER INFUS -->
+        <div class="panel-card">
+
+            <h2 class="panel-title">
+            💉 OBAT
+            </h2>
+
+            <div class="section-box">
+
+                <div class="section-mini-title">
+                OBAT TITRASI
+                </div>
+
+                <div class="form-grid-2">
+
+<select
+id="obat"
+onchange="autoFillObat()">
+
+    <option value="DILTIAZEM">
+    Diltiazem
+    </option>
+
+    <option value="NICARDIPINE_MURNI">
+    Nicardipine Murni
+    </option>
+
+    <option value="NICARDIPINE_OPLOS">
+    Nicardipine Oplos
+    </option>
+
+    <option value="DOBUTAMIN">
+    Dobutamin
+    </option>
+
+    <option value="NTG">
+    Nitroglycerin (NTG)
+    </option>
+
+    <option value="DOPAMIN">
+    Dopamin
+    </option>
+
+    <option value="DEX">
+    Dexmedetomidine
+    </option>
+
+    <option value="NE">
+    Norepinephrine (NE)
+    </option>
+
+    <option value="EPI">
+    Epinephrine (EPI)
+    </option>
+
+    <option value="VASO">
+    Vasopressin
+    </option>
+
+</select>
+
+                    <input
+                    type="text"
+                    id="konsentrasi"
+                    placeholder="Dosis Sediaan"
+                    readonly>
+
+                    <input
+                    type="text"
+                    id="dosisPerMl"
+                    placeholder="Dosis per ml"
+                    readonly>
+
+                    <input
+                    type="text"
+                    id="checker"
+                    placeholder="Checker">
+
+                    <input
+                    type="text"
+                    id="giver"
+                    placeholder="Giver">
+
+                </div>
+
+            </div>
+        
+        </div>
+
+    </div>
+</div> <!-- top-layout -->
+<div class="full-button-bar">
+
+    <div class="button-group">
+
+            <button
+            class="btn-add"
+            onclick="tambahLabel()">
+
+            Tambah Label Titrasi
+
+            </button>
+
+            <button
+            class="btn-print"
+            onclick="tambahLabelSpuit()">
+
+            Tambah Label Spuit
+
+            </button>
+
+            <button
+            class="btn-clear"
+            onclick="clearLabel()">
+
+            Bersihkan
+
+            </button>
+
+            <button
+            class="btn-print"
+            onclick="window.print()">
+
+            Cetak Semua
+
+            </button>
+
+        </div>
+    </div>
+
+</div>
+<div class="output-grid">
+
+    <!-- KITIR -->
+    <div class="output-box">
+
+        <div class="output-title">
+        LABEL TITRASI
+        </div>
+
+        <div class="sheet" id="sheet"></div>
+
+    </div>
+
+    <!-- LABEL SPUIT -->
+    <div class="output-box">
+
+        <div class="output-title">
+        LABEL SPUIT
+        </div>
+
+        <div
+        class="spuit-sheet"
+        id="spuitSheet">
+        </div>
+
+    </div>
+
+</div> <!-- output-grid -->
+
+</div> <!-- main-stack -->
+
+<script>
+/* =========================
+   AUTO HITUNG CHUMLEA
+========================= */
+
+document.getElementById('knee')
+.addEventListener('input', hitungBB);
+
+document.getElementById('lila')
+.addEventListener('input', hitungBB);
+
+document.getElementById('gender')
+.addEventListener('change', hitungBB);
+
+function hitungBB(){
+
+    let knee =
+    parseFloat(
+        document.getElementById('knee').value
+    );
+
+    let lila =
+    parseFloat(
+        document.getElementById('lila').value
+    );
+
+    let gender =
+    document.getElementById('gender').value;
+
+    if(!knee || !lila) return;
+
+    let bb = 0;
+
+    /* CHUMLEA MODIFIKASI ICU */
+
+    if(gender === "pria"){
+
+        bb =
+        (1.10 * knee) +
+        (2.5 * lila) -
+        65;
+
+    }else{
+
+        bb =
+        (1.01 * knee) +
+        (2.81 * lila) -
+        66;
+    }
+
+    if(bb < 0) bb = 0;
+
+    document.getElementById('bb').value =
+    bb.toFixed(1);
+}
+/* =========================
+   AUTO FILL PARAMETER OBAT
+========================= */
+
+function autoFillObat(){
+
+    let obat =
+    document.getElementById('obat').value;
+
+    let konsentrasi =
+    document.getElementById('konsentrasi');
+
+    let dosisPerMlInput =
+    document.getElementById('dosisPerMl');
+
+    if(obat === "DILTIAZEM"){
+
+        konsentrasi.value =
+        "100 mg";
+
+        dosisPerMlInput.value =
+        "2 mg/ml";
+    }
+
+    if(obat === "NICARDIPINE_MURNI"){
+
+        konsentrasi.value =
+        "10 mg";
+
+        dosisPerMlInput.value =
+        "1 mg/ml";
+    }
+
+    if(obat === "DOBUTAMIN"){
+
+        konsentrasi.value =
+        "250 mg";
+
+        dosisPerMlInput.value =
+        "5 mg/ml";
+    }
+
+    if(obat === "NE"){
+
+        konsentrasi.value =
+        "8 mg";
+
+        dosisPerMlInput.value =
+        "0.2 mg/ml";
+    }
+}
+function tambahLabel(){
+    let obat = document.getElementById('obat').value;
+
+    let konsentrasi = document.getElementById('konsentrasi');
+
+    let dosisml =
+    document.getElementById('dosisPerMl');
+    
+    let nama = document.getElementById('nama').value;
+
+    let mr = document.getElementById('mr').value;
+
+    let gender =
+    document.getElementById('gender').value;
+
+    let bb = parseFloat(document.getElementById('bb').value);
+
+    let giver = document.getElementById('giver').value;
+
+    let checker = document.getElementById('checker').value;
+
+    let namaObat = {
+        DILTIAZEM: "DILTIAZEM",
+        NICARDIPINE_MURNI: "NICARDIPINE",
+        NICARDIPINE_OPLOS: "NICARDIPINE",
+        DOBUTAMIN: "DOBUTAMIN",
+        NTG: "NITROGLICERIN",
+        DOPAMIN: "DOPAMIN",
+        DEX: "DEXMEDETOMIDINE",
+        NE: "NOREPINEPHRINE",
+        EPI: "EPINEPHRINE",
+        VASO: "VASOPRESSIN"
+    }[obat];
+
+    if(!nama || !bb){
+
+        alert('Lengkapi data pasien');
+
+        return;
+    }
+
+    let warna = "#fde047";
+
+    if(obat === "NOREPINEPHRINE"){
+
+        warna = "#fecaca";
+    }
+
+    if(obat === "DOBUTAMIN"){
+
+        warna = "#bfdbfe";
+    }
+
+    if(obat === "VASOPRESSIN"){
+
+        warna = "#ddd6fe";
+    }
+
+let satuan = "ml/jam";
+
+let labelDosis = "microgram/kgBB/mnt";
+
+let dosisPerMl = "-";
+
+let dosisSediaan = "-";
+
+let r = [];
+
+/* ===================================
+   DILTIAZEM
+=================================== */
+
+if(obat === "DILTIAZEM"){
+
+    warna = "#fed7aa";
+
+    dosisPerMl = "PZ/D5 - 50 ml";
+
+    dosisSediaan = "100 mg - 2 mg/ml";
+
+    for(let i=1;i<=10;i++){
+
+        r.push(
+            ((bb * i * 60) / 2000).toFixed(2)
+        );
+    }
+}
+
+/* ===================================
+   NICARDIPINE MURNI
+=================================== */
+
+if(obat === "NICARDIPINE_MURNI"){
+
+    warna = "#fde047";
+
+    satuan = "mg/jam";
+
+    dosisPerMl = "MURNI";
+
+    dosisSediaan = "10 mg - 1 mg/ml";
+
+    for(let i=0.5;i<=5;i+=0.5){
+
+        r.push(
+            ((bb * i * 60) / 1000).toFixed(2)
+        );
+    }
+}
+
+/* ===================================
+   NICARDIPINE OPLOS
+=================================== */
+
+if(obat === "NICARDIPINE_OPLOS"){
+
+    warna = "#fef08a";
+
+    dosisPerMl = "PZ/D5 - 50 ml";
+
+    dosisSediaan = "10 mg - 0,2 mg/ml";
+  
+    for(let i=0.5;i<=5;i+=0.5){
+
+        r.push(
+            ((bb * i * 60) / 200).toFixed(2)
+        );
+    }
+}
+
+/* ===================================
+   DOBUTAMIN
+=================================== */
+
+if(obat === "DOBUTAMIN"){
+
+    warna = "#bfdbfe";
+
+    dosisPerMl = "PZ/D5 - 50 ml";
+
+    dosisSediaan = "250 mg - 5 mg/ml";
+
+    for(let i=1;i<=10;i++){
+
+        r.push(
+            ((bb * i * 60) / 5000).toFixed(2)
+        );
+    }
+}
+
+/* ===================================
+   NTG
+=================================== */
+
+if(obat === "NTG"){
+
+    warna = "#fecaca";
+
+    dosisPerMl = "PZ/D5 - 50 ml";
+
+    dosisSediaan = "10 mg - 0,5 mg/ml";
+
+    for(let i=10;i<=100;i+=10){
+
+        r.push(
+            ((i * 60) / 200).toFixed(2)
+        );
+    }
+}
+
+/* ===================================
+   DOPAMIN
+=================================== */
+
+if(obat === "DOPAMIN"){
+
+    warna = "#ddd6fe";
+
+    dosisPerMl = "PZ/D5 - 40 ml";
+
+    dosisSediaan = "200 mg - 5 mg/ml";
+
+    for(let i=1;i<=10;i++){
+
+        r.push(
+            ((bb * i * 60) / 5000).toFixed(2)
+        );
+    }
+}
+
+/* ===================================
+   DEX
+=================================== */
+
+if(obat === "DEX"){
+
+    warna = "#a7f3d0";
+
+    dosisPerMl = "PZ/D5 - 50 ml";
+
+    dosisSediaan = "200 mcg - 4 mcg/ml";
+
+    for(let i=0.1;i<=1;i+=0.1){
+
+        r.push(
+            ((bb * i) / 4).toFixed(2)
+        );
+    }
+}
+
+/* ===================================
+   NE
+=================================== */
+
+if(obat === "NE"){
+
+    warna = "#fecdd3";
+
+    labelDosis = "nanogram/kgBB/mnt";
+
+    dosisPerMl = "PZ/D5 - 40 ml";
+
+    dosisSediaan = "8 mg - 0,2 mg/ml";
+
+    let dosisNE = [
+        25,50,75,100,125,150,
+        175,200,225,250,275,300
+    ];
+
+    dosisNE.forEach(d=>{
+
+        r.push(
+            ((bb * d * 60) / 200000).toFixed(2)
+        );
+    });
+}
+
+/* ===================================
+   EPI
+=================================== */
+
+if(obat === "EPI"){
+
+    warna = "#fda4af";
+
+    labelDosis = "nanogram/kgBB/mnt";
+
+    dosisPerMl = "PZ/D5 - 40 ml";
+
+    dosisSediaan = "8 mg - 0,2 mg/ml";
+
+    let dosisEPI = [
+        25,50,75,100,125,150,
+        175,200,225,250,275,300
+    ];
+
+    dosisEPI.forEach(d=>{
+
+        r.push(
+            ((bb * d * 60) / 200000).toFixed(2)
+        );
+    });
+}
+
+/* ===================================
+   VASO
+=================================== */
+
+if(obat === "VASO"){
+
+    warna = "#ddd6fe";
+
+    labelDosis = "unit/menit";
+  
+    dosisPerMl = "PZ/D5 - 20 ml";
+
+    dosisSediaan = "20 iu - 1 iu/ml";
+
+    let dosisVASO = [
+        0.01,0.02,0.03,0.04,0.05,
+        0.1,0.2,0.3,0.4,0.5
+    ];
+
+    dosisVASO.forEach(d=>{
+
+        r.push(
+            ((d * 60) / 1).toFixed(2)
+        );
+    });
+}
+let dosisList = [];
+
+/* DILTIAZEM */
+if(obat === "DILTIAZEM"){
+    dosisList = [1,2,3,4,5,6,7,8,9,10];
+}
+
+/* NICARDIPINE */
+if(obat === "NICARDIPINE_MURNI" ||
+   obat === "NICARDIPINE_OPLOS"){
+
+    dosisList = [
+        0.5,1,1.5,2,2.5,
+        3,3.5,4,4.5,5
+    ];
+}
+
+/* DOBUTAMIN */
+if(obat === "DOBUTAMIN"){
+    dosisList = [1,2,3,4,5,6,7,8,9,10];
+}
+
+/* NTG */
+if(obat === "NTG"){
+    dosisList = [
+        10,20,30,40,50,
+        60,70,80,90,100
+    ];
+}
+
+/* DOPAMIN */
+if(obat === "DOPAMIN"){
+    dosisList = [1,2,3,4,5,6,7,8,9,10];
+}
+
+/* DEX */
+if(obat === "DEX"){
+    dosisList = [
+        0.1,0.2,0.3,0.4,0.5,
+        0.6,0.7,0.8,0.9,1
+    ];
+}
+
+/* NE & EPI */
+if(obat === "NE" || obat === "EPI"){
+
+    dosisList = [
+        25,50,75,100,125,150,
+        175,200,225,250,275,300
+    ];
+}
+
+/* VASO */
+if(obat === "VASO"){
+
+    dosisList = [
+        0.01,0.02,0.03,0.04,0.05,
+        0.1,0.2,0.3,0.4,0.5
+    ];
+}
+
+let tabelRate = `
+
+<table class="rate-table">
+
+<tr>
+    <th>DOSIS</th>
+    <th>RATE</th>
+</tr>
+
+<tr>
+    <th>${labelDosis}</th>
+    <th>${satuan}</th>
+</tr>
+
+`;
+
+for(let i=0;i<dosisList.length;i++){
+
+    tabelRate += `
+
+    <tr>
+        <td>${dosisList[i]}</td>
+        <td>${r[i]}</td>
+    </tr>
+
+    `;
+}
+
+tabelRate += `</table>`;
+    let waktu = new Date().toLocaleString('id-ID');
+
+    let idQR = "qr" + Date.now();
+
+    let html = `
+
+<div class="label">
+
+    <div class="label-header"
+    style="background:${warna}">
+        ${namaObat}
+    </div>
+
+    <div class="label-content">
+
+        <div class="info-grid">
+
+            <div>
+            ${gender === "pria" ? "👨" : "👩"} ${nama}
+            </div>
+            <div>🆔 ${mr}</div>
+
+            <div>⚖️ ${bb} kg</div>
+            <div>👨‍⚕️ Giver : ${giver}</div>
+
+            <div>💊 ${dosisSediaan}</div>
+            <div>✅ Checker : ${checker}</div>
+
+            <div>💧 ${dosisPerMl}</div>
+            <div>🕒 ${waktu}</div>
+
+        </div>
+
+        ${tabelRate}
+
+        <div class="alert">
+            HIGH ALERT<br>
+            DOUBLE CHECK
+        </div>
+
+    </div>
+
+</div>
+
+`;
+
+    document.getElementById('sheet').innerHTML += html;
+
+}
+/* =========================
+   LABEL SPUIT
+========================= */
+
+function tambahLabelSpuit(){
+
+    let nama =
+    document.getElementById('nama').value;
+
+    let mr =
+    document.getElementById('mr').value;
+
+    let gender =
+    document.getElementById('gender').value;
+
+    let giver =
+    document.getElementById('giver').value;
+
+    let checker =
+    document.getElementById('checker').value;
+
+    let obat =
+    document.getElementById('obat').value;
+
+    let bb =
+    document.getElementById('bb').value;
+
+    let waktu =
+    new Date().toLocaleString('id-ID');
+
+let namaObat = {
+
+    DILTIAZEM: "DILTIAZEM",
+
+    NICARDIPINE_MURNI: "NICARDIPINE",
+
+    NICARDIPINE_OPLOS: "NICARDIPINE",
+
+    DOBUTAMIN: "DOBUTAMIN",
+
+    NTG: "NITROGLYCERIN",
+
+    DOPAMIN: "DOPAMIN",
+
+    DEX: "DEXMEDETOMIDINE",
+
+    NE: "NOREPINEPHRINE",
+
+    EPI: "EPINEPHRINE",
+
+    VASO: "VASOPRESSIN"
+
+}[obat];
+
+    let dosisSediaan = "-";
+    let dosisPerMl = "-";
+    let pelarut = "-";
+
+ if(obat === "DILTIAZEM"){
+
+    warna = "#fed7aa";
+
+    dosisPerMl = "PZ/D5 - 50 ml";
+
+    dosisSediaan = "100 mg - 2 mg/ml";
+}
+    
+if(obat === "NICARDIPINE_MURNI"){
+
+    warna = "#fde047";
+
+    satuan = "mg/jam";
+
+    dosisPerMl = "MURNI";
+
+    dosisSediaan = "10 mg - 1 mg/ml";
+}
+
+if(obat === "NICARDIPINE_OPLOS"){
+
+    warna = "#fef08a";
+
+    dosisPerMl = "PZ/D5 - 50 ml";
+
+    dosisSediaan = "10 mg - 0,2 mg/ml";
+}
+
+if(obat === "DOBUTAMIN"){
+    warna = "#fecaca";
+    dosisPerMl = "D5 - 50 ml";
+    dosisSediaan = "250 mg - 5 mg/ml";
+}
+
+if(obat === "NE"){
+    warna = "#fda4af";
+    dosisPerMl = "PZ/D5 - 40 ml";
+    dosisSediaan = "8 mg - 0,2 mg/ml";
+}
+if(obat === "EPI"){
+    warna = "#fda4af";
+    dosisPerMl = "PZ/D5 - 40 ml";
+    dosisSediaan = "8 mg - 0,2 mg/ml";
+}
+if(obat === "VASO"){
+    warna = "#ddd6fe";
+    dosisPerMl = "PZ/D5 - 20 ml";
+    dosisSediaan = "20 iu - 1 iu/ml";
+}
+if(obat === "NTG"){
+
+    warna = "#fecaca";
+
+    dosisPerMl = "PZ/D5 - 50 ml";
+
+    dosisSediaan = "10 mg - 0.5 mg/ml";
+}
+
+if(obat === "DOPAMIN"){
+
+    warna = "#ddd6fe";
+
+    dosisPerMl = "PZ/D5 - 40 ml";
+
+    dosisSediaan = "200 mg - 5 mg/ml";
+}
+
+if(obat === "DEX"){
+
+    warna = "#a7f3d0";
+
+    dosisPerMl = "PZ/D5 - 50 ml";
+
+    dosisSediaan = "200 mcg - 4 mcg/ml";
+}
+
+    let html = `
+
+    <div class="spuit-label">
+
+        <div class="high-alert">
+        HIGH ALERT
+        </div>
+
+        <div class="spuit-title">
+        ${namaObat}
+        </div>
+
+        <div class="spuit-info-grid">
+
+            <div class="spuit-info-item info-patient">
+
+                <span class="spuit-info-icon">
+                ${gender === "pria" ? "👨" : "👩"}
+                </span>
+
+                <span class="spuit-info-text">
+                ${nama}
+                </span>
+
+            </div>
+
+            <div class="spuit-info-item info-rm">
+
+                <span class="spuit-info-icon">
+            🆔
+                </span>
+
+                <span class="spuit-info-text">
+                ${mr}
+                </span>
+
+            </div>
+
+            <div class="spuit-info-item info-bb">
+
+                <span class="spuit-info-icon">
+                ⚖️
+                </span>
+
+                <span class="spuit-info-text">
+                ${bb} kg
+                </span>
+
+            </div>
+
+            <div class="spuit-info-item info-giver">
+
+                <span class="spuit-info-icon">
+                👨‍⚕️
+                </span>
+
+                <span class="spuit-info-text">
+                ${giver}
+                </span>
+
+            </div>
+
+            <div class="spuit-info-item info-obat">
+
+                <span class="spuit-info-icon">
+                💊
+                </span>
+
+                <span class="spuit-info-text">
+                ${dosisSediaan}
+                </span>
+
+            </div>
+
+            <div class="spuit-info-item info-checker">
+
+                <span class="spuit-info-icon">
+                ✅
+                </span>
+
+                <span class="spuit-info-text">
+                ${checker}
+                </span>
+
+            </div>
+
+            <div class="spuit-info-item info-pelarut">
+
+                <span class="spuit-info-icon">
+                💧
+                </span>
+
+                <span class="spuit-info-text">
+                ${dosisPerMl}
+                </span>
+
+            </div>
+
+            <div class="spuit-info-item info-time">
+
+                <span class="spuit-info-icon">
+                🕒
+                </span>
+
+                <span class="spuit-info-text">
+                ${waktu}
+                </span>
+
+            </div>
+
+        </div>
+
+</div>
+
+`;
+
+
+    document.getElementById(
+        'spuitSheet'
+    ).innerHTML += html;
+}
+
+function clearLabel(){
+
+    if(confirm('Hapus semua label?')){
+
+        document.getElementById('sheet').innerHTML = '';
+
+        document.getElementById('spuitSheet').innerHTML = '';
+    }
+}
+
+autoFillObat();
+
+</script>
+
+<div class="copyright">
+    © 2026 AIRA by Limbat
+</div>
+
+</body>
+</html>
